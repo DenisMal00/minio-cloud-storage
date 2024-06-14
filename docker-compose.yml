@@ -1,17 +1,67 @@
+version: '3.7'
+
 services:
+  minio-init:
+    image: alpine:latest
+    user: "root"
+    volumes:
+      - minio_certs:/certs
+      - ./certs:/tmp/certs
+    command: >
+      sh -c "cp -R /tmp/certs/* /certs/ && chown -R 1000:1000 /certs && exit 0"
+    networks:
+      - app-network
+      
   minio:
     image: minio/minio:latest
     container_name: minio
     environment:
       - MINIO_ROOT_USER=admin
       - MINIO_ROOT_PASSWORD=password
+      - MINIO_PROMETHEUS_AUTH_TYPE=public
     volumes:
       - minio_data:/data
+      - minio_certs:/certs
     ports:
       - "9000:9000"
-      - "9001:9001"
-    command: server /data --console-address ":9001"
+      - "443:443"
+    command: server /data --console-address ":443" --certs-dir /certs
+    user: "1000:1000"
+    networks:
+      - app-network
+    depends_on:
+      - minio-init
+    restart: always
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - app-network
+    restart: always
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      - app-network
+    restart: always
+
+networks:
+  app-network:
+    driver: bridge
 
 volumes:
   minio_data:
+  minio_certs:
+  grafana_data:
 

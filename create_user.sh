@@ -2,7 +2,7 @@
 
 # Parametri
 MINIO_ALIAS="myminio"
-MINIO_URL="http://localhost:9000"
+MINIO_URL="https://localhost:9000"
 ACCESS_KEY="admin"
 SECRET_KEY="password"
 
@@ -18,11 +18,11 @@ create_user() {
     local password=$(generate_password)
 
     # Configura alias MinIO
-    mc alias set $MINIO_ALIAS $MINIO_URL $ACCESS_KEY $SECRET_KEY
+    mc alias set $MINIO_ALIAS $MINIO_URL $ACCESS_KEY $SECRET_KEY --insecure
 
     # Crea bucket per l'utente
     local bucket_name="${username}-bucket"
-    mc mb ${MINIO_ALIAS}/${bucket_name}
+    mc mb ${MINIO_ALIAS}/${bucket_name} --insecure
 
     # Crea politica di accesso per l'utente
     local policy_name="${username}-policy"
@@ -48,11 +48,11 @@ create_user() {
     }' > $policy_file
 
     # Aggiungi politica al server MinIO
-    mc admin policy create $MINIO_ALIAS $policy_name $policy_file
+    mc admin policy create $MINIO_ALIAS $policy_name $policy_file --insecure
 
     # Crea utente e assegna politica
-    mc admin user add $MINIO_ALIAS $username $password
-    mc admin policy attach $MINIO_ALIAS $policy_name --user $username
+    mc admin user add $MINIO_ALIAS $username $password --insecure
+    mc admin policy attach $MINIO_ALIAS $policy_name --user $username --insecure
 
     # Pulisci il file di politica temporaneo
     rm $policy_file
