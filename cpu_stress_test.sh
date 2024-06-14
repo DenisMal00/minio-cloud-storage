@@ -59,12 +59,17 @@ perform_stress_test() {
       sleep $STATS_INTERVAL
     done
   ) &
+  STATS_PID=$!
 
   # Wait for the specified duration
   sleep $STRESS_DURATION
 
   # Stop CPU stress (suppressing the output)
   docker exec -it $CONTAINER_ID sh -c "for pid in \$(cat /tmp/yes_pids); do kill \$pid; done && rm /tmp/yes_pids" 2>/dev/null
+
+  # Ensure the stats collection process is terminated
+  kill $STATS_PID 2>/dev/null
+  wait $STATS_PID 2>/dev/null
 
   # Summarize the collected stats immediately after each test
   echo "Test $1 Summary:"
@@ -81,7 +86,7 @@ perform_stress_test() {
        { used += $1; free += $2; avail += $3; count++ }
        END { if (count > 0) printf "%-10.2f %-10.2f %-10.2f\n", used/count, free/count, avail/count }' "mem_usage_test_$1.txt"
 
-  # Remove temporary files
+  # Remove temporary files for the current test
   rm "load_avg_test_$1.txt" "io_stats_test_$1.txt" "mem_usage_test_$1.txt"
 }
 
