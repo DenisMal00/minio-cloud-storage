@@ -16,8 +16,16 @@ This repository contains the implementation of a cloud-based file storage system
 git clone https://github.com/DenisMal00/minio-cloud-storage.git
 cd minio-cloud-storage
 ```
+### 2. Set Permissions for Volumes
+Run these commands to set the correct permissions for the volumes:
 
-### 2. Run Docker Compose
+```bash
+Copia codice
+docker run --rm -v minio-cloud-storage_minio_data:/data -v minio-cloud-storage_minio_certs:/certs alpine ls -ld /data /certs
+docker run --rm -v minio-cloud-storage_minio_data:/data -v minio-cloud-storage_minio_certs:/certs alpine sh -c "chown -R 1000:1000 /data /certs && chmod -R u+rw /data /certs"
+```
+
+### 3. Run Docker Compose
 
 Execute the following command to start all services:
 
@@ -30,7 +38,7 @@ This command will start the following services:
 - **Prometheus**: Monitoring service
 - **Grafana**: Metrics visualization
 
-### 3. Access the Services
+### 4. Access the Services
 
 - **MinIO**: [https://localhost](https://localhost)
   - Default credentials:
@@ -44,7 +52,7 @@ This command will start the following services:
     - Username: `admin`
     - Password: `admin`
 
-### 4. Create Users
+### 5. Create Users
 
 **Regular User**
 
@@ -66,7 +74,7 @@ To create an admin user, run the `create_admin.sh` script:
 
 Replace `ADMIN_USERNAME` with the desired username. The script will output the generated password.
 
-### 5. Monitor and Manage
+### 6. Monitor and Manage
 
 Use Prometheus and Grafana to monitor system performance and visualize metrics. Configure alerts and notifications in Grafana to manage the deployed system proactively.
 
