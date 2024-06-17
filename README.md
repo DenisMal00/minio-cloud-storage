@@ -13,15 +13,11 @@ This repository contains the implementation of a cloud-based file storage system
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/cloud-based-file-storage-system.git
+git clone https://github.com/DenisMal00/minio-cloud-storage/.git
 cd cloud-based-file-storage-system
 ```
 
-### 2. Prepare SSL Certificates
-
-Place your SSL certificates in the `./certs` directory. These certificates will be used to enable HTTPS for MinIO.
-
-### 3. Run Docker Compose
+### 2. Run Docker Compose
 
 Execute the following command to start all services:
 
@@ -34,7 +30,7 @@ This command will start the following services:
 - **Prometheus**: Monitoring service
 - **Grafana**: Metrics visualization
 
-### 4. Access the Services
+### 3. Access the Services
 
 - **MinIO**: [https://localhost:9000](https://localhost:9000)
   - Default credentials:
@@ -48,7 +44,7 @@ This command will start the following services:
     - Username: `admin`
     - Password: `admin`
 
-### 5. Create Users
+### 4. Create Users
 
 **Regular User**
 
@@ -70,7 +66,7 @@ To create an admin user, run the `create_admin.sh` script:
 
 Replace `ADMIN_USERNAME` with the desired username. The script will output the generated password.
 
-### 6. Monitor and Manage
+### 5. Monitor and Manage
 
 Use Prometheus and Grafana to monitor system performance and visualize metrics. Configure alerts and notifications in Grafana to manage the deployed system proactively.
 
