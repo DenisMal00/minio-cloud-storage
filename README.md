@@ -14,7 +14,7 @@ This repository contains the implementation of a cloud-based file storage system
 
 ```bash
 git clone https://github.com/DenisMal00/minio-cloud-storage/.git
-cd cloud-based-file-storage-system
+cd minio-cloud-storage
 ```
 
 ### 2. Run Docker Compose
