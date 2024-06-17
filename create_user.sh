@@ -6,16 +6,10 @@ MINIO_URL="https://localhost:9000"
 ACCESS_KEY="admin"
 SECRET_KEY="password"
 
-# Funzione per generare una password sicura casuale
-generate_password() {
-    # Genera una password di 12 caratteri con lettere, numeri e simboli
-    openssl rand -base64 12
-}
-
 # Funzione per creare utente, bucket e policy
 create_user() {
     local username=$1
-    local password=$(generate_password)
+    local password=$(openssl rand -base64 12)
 
     # Configura alias MinIO
     mc alias set $MINIO_ALIAS $MINIO_URL $ACCESS_KEY $SECRET_KEY --insecure
