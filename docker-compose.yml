@@ -1,5 +1,5 @@
 version: '3.7'
-
+ 
 services:
   minio-init:
     image: alpine:latest
@@ -66,4 +66,5 @@ volumes:
   minio_data:
   minio_certs:
   grafana_data:
+
 
