@@ -95,7 +95,7 @@ To test file operations (upload, download, delete), use the `performance_test.sh
 To stress test the CPU, use the `cpu_stress_test.sh` script:
 
 ```bash
-./cpu_stress_test.sh http://localhost:9090 NUM_ITERATIONS
+./cpu_stress_test.sh NUM_ITERATIONS
 ```
 - `NUM_ITERATIONS`: Number of iterations to perform.
 
