@@ -32,7 +32,7 @@ This command will start the following services:
 
 ### 3. Access the Services
 
-- **MinIO**: [https://localhost:9000](https://localhost:9000)
+- **MinIO**: [https://localhost](https://localhost)
   - Default credentials:
     - Username: `admin`
     - Password: `password`
