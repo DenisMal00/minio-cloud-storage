@@ -106,11 +106,3 @@ To stop and remove all containers, networks, and volumes created by Docker Compo
 ```bash
 docker-compose down -v
 ```
-
-## Contribution
-
-Feel free to fork this repository and contribute by submitting a pull request. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-
-This project is licensed under the MIT License.
