@@ -44,6 +44,8 @@ This command will start the following services:
   - Default credentials:
     - Username: `admin`
     - Password: `password`
+ - To avoid security warnings, you can add the self-signed certificate to your trusted certificates store. The certificate can be found in the `certs/ca` directory of this repository.
+
 
 - **Prometheus**: [http://localhost:9090](http://localhost:9090)
 
