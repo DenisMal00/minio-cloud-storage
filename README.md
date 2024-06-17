@@ -13,7 +13,7 @@ This repository contains the implementation of a cloud-based file storage system
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/DenisMal00/minio-cloud-storage/.git
+git clone https://github.com/DenisMal00/minio-cloud-storage.git
 cd minio-cloud-storage
 ```
 
