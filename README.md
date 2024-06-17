@@ -77,21 +77,18 @@ Use Prometheus and Grafana to monitor system performance and visualize metrics. 
 To test file operations (upload, download, delete), use the `performance_test.sh` script:
 
 ```bash
-./performance_test.sh https://localhost:9000 FILE_SIZE_MB NUM_ITERATIONS
+./performance_test.sh FILE_SIZE_MB
 ```
 
 - `FILE_SIZE_MB`: Size of the test file in megabytes.
-- `NUM_ITERATIONS`: Number of iterations to perform.
 
 **CPU Stress Test**
 
 To stress test the CPU, use the `cpu_stress_test.sh` script:
 
 ```bash
-./cpu_stress_test.sh http://localhost:9090 DURATION_SECONDS NUM_ITERATIONS
+./cpu_stress_test.sh http://localhost:9090 NUM_ITERATIONS
 ```
-
-- `DURATION_SECONDS`: Duration of the CPU stress test in seconds.
 - `NUM_ITERATIONS`: Number of iterations to perform.
 
 ## Clean Up
