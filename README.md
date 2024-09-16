@@ -20,7 +20,6 @@ cd minio-cloud-storage
 Run these commands to set the correct permissions for the volumes:
 
 ```bash
-Copia codice
 docker run --rm -v minio-cloud-storage_minio_data:/data -v minio-cloud-storage_minio_certs:/certs alpine ls -ld /data /certs
 docker run --rm -v minio-cloud-storage_minio_data:/data -v minio-cloud-storage_minio_certs:/certs alpine sh -c "chown -R 1000:1000 /data /certs && chmod -R u+rw /data /certs"
 ```
