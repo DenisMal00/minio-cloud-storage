@@ -38,8 +38,8 @@ This command will start the following services:
 - **Grafana**: Metrics visualization
 
 ### 4. Access the Services
-
-- **MinIO**: [https://localhost](https://localhost)
+Add miniostorage.com to etc/hosts/ as localhost
+- **MinIO**: [https://miniostorage.com](https://miniostorage.com)
   - Default credentials:
     - Username: `admin`
     - Password: `password`
